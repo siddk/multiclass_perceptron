@@ -42,3 +42,7 @@ After the final iteration, the final weight vectors should be somewhat stable (i
 the assumptions of the binary perceptron, there is no guarantee the multi-class perceptron will reach a steady state),
 and the classifier will be ready to be put to use.
 
+## Building a Classifier ##
+
+The following sections detail how to format the data for use with the classifier builder, as well as how to train and
+save the classifier for later use. The last section deals with how to build an analytics report for the data.

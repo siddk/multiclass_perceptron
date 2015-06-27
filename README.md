@@ -75,8 +75,8 @@ The bulk of the classifier is abstracted away into a Python class, that takes th
 5. `iterations`
     - Number of iterations to run training data through. Set to 100 by default.
 
-A clear example of how all these parameters should look for a given data set can be found in the shapes_example.py file
-in the feature_data module.
+A clear example of how all these parameters should look for a given data set can be found in the `shapes_example.py`
+file in the `feature_data` module.
 
 ### Training and Saving the Classifier ###
 

@@ -22,7 +22,7 @@ class MultiClassPerceptron():
 
     :param  classes           List of categories/classes (match tags in tagged data).
     :param  feature_list      List of features.
-    :param  feature_data      Feature Data, in format specified in README, usually imported from feature_data.
+    :param  feature_data      Feature Data, in format specified in README, usually imported from feature_data module.
     :param  train_test_ratio  Ratio of data to be used in training vs. testing. Set to 75% by default.
     :param  iterations        Number of iterations to run training data through. Set to 100 by default.
     """

@@ -51,6 +51,27 @@ save the classifier for later use. The last section deals with how to build an a
 
 ### Formatting the Data ###
 
+The bulk of the classifier is abstracted away into a Python class, that takes the following parameters as input:
+
+1. `classes`
+    - List of categories/classes that data is divided into. This should be a Python list of strings, and each string
+      should be an exact match of the class tag in the actual feature data.
+2. `feature_list`
+    - List of features, as strings in a Python list.
+3. `feature_data`
+    - A python list of tagged feature data, in the following format:
+    - ```python
+      feature_data = [("class1", { "feature1": 1, "feature2": 0, "feature3": 0 }),
+                      ("class2", { "feature1": 3, "feature2": 1, "feature3": 1 }),
+                      ("class3", { "feature1": 3, "feature2": 1, "feature3": 0 })]
+      ```
+4. `train_test_ratio`
+    - Ratio of data to be used in training vs. testing. Set to 75% by default.
+5. `iterations`
+    - Number of iterations to run training data through. Set to 100 by default.
+
+A clear example of how all these parameters should look for a given data set can be found in the shapes_example.py file
+in the feature_data module.
 
 ### Training and Saving the Classifier ###
 

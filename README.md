@@ -19,6 +19,4 @@ In the case of a multi-class perceptron, things are a little different. The data
 the respecting feature vector being multiplied by a single weight vector (for a single class), it is multiplied
 (dot product) by a number of weight vectors (a separate vector of weights for each unique class). Whichever weight vector
 that yields the highest activation energy product is the class the data belongs to. This decision process is known as
-the Multi-Class Decision Rule, and is illustrated below (taken from the UC Berkeley CS 188 slides on Classification):
-
-![Multi-Class Decision Rule](.idea/multi-class-decision.png)
+the Multi-Class Decision Rule.

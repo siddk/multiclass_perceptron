@@ -62,11 +62,11 @@ The bulk of the classifier is abstracted away into a Python class, that takes th
 
 3. `feature_data`
     - A python list of tagged feature data, in the following format:
-      ```python
-      feature_data = [("class1", { "feature1": 1, "feature2": 0, "feature3": 0 }),
+      + ```python
+        feature_data = [("class1", { "feature1": 1, "feature2": 0, "feature3": 0 }),
                       ("class2", { "feature1": 3, "feature2": 1, "feature3": 1 }),
                       ("class3", { "feature1": 3, "feature2": 1, "feature3": 0 })]
-      ```
+        ```
 
 4. `train_test_ratio`
     - Ratio of data to be used in training vs. testing. Set to 75% by default.

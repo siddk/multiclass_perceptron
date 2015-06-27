@@ -44,7 +44,15 @@ and the classifier will be ready to be put to use.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Building a Classifier ##
+## Classifier Building ##
 
 The following sections detail how to format the data for use with the classifier builder, as well as how to train and
 save the classifier for later use. The last section deals with how to build an analytics report for the data.
+
+### Formatting the Data ###
+
+
+### Training and Saving the Classifier ###
+
+
+### Building an Analytics Report ###

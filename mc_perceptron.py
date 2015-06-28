@@ -47,17 +47,18 @@ class MultiClassPerceptron():
         """
         Train the Multi-Class Perceptron algorithm using the following method (from the README):
 
-        During each iteration of training, the data (formatted as a feature vector) is read in, and the dot product is
-        taken with each unique weight vector (which are all initially set to 0). The class that yields the highest
-        product is the class to which the data belongs. In the case this class is the correct value (matches with the
-        actual category to which the data belongs), nothing happens, and the next data point is read in. However, in the
-        case that the predicted value is wrong, the weight vectors are corrected as follows: The feature vector is
-        subtracted from the predicted weight vector, and added to the actual (correct) weight vector. This makes sense,
-        as we want to reject the wrong answer, and accept the correct one.
+        During each iteration of training, the data (formatted as a feature vector) is read in, and the dot
+        product is taken with each unique weight vector (which are all initially set to 0). The class that
+        yields the highest product is the class to which the data belongs. In the case this class is the
+        correct value (matches with the actual category to which the data belongs), nothing happens, and the
+        next data point is read in. However, in the case that the predicted value is wrong, the weight vectors a
+        re corrected as follows: The feature vector is subtracted from the predicted weight vector, and added to
+        the actual (correct) weight vector. This makes sense, as we want to reject the wrong answer, and accept
+        the correct one.
 
-        After the final iteration, the final weight vectors should be somewhat stable (it is of importance to note that
-        unlike the assumptions of the binary perceptron, there is no guarantee the multi-class perceptron will reach a
-        steady state), and the classifier will be ready to be put to use.
+        After the final iteration, the final weight vectors should be somewhat stable (it is of importance to
+        note that unlike the assumptions of the binary perceptron, there is no guarantee the multi-class
+        perceptron will reach a steady state), and the classifier will be ready to be put to use.
         """
         for _ in xrange(self.iterations):
             for category, feature_dict in self.train_set:

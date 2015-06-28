@@ -12,10 +12,10 @@ import random
 __author__ = "Sidd Karamcheti"
 
 # Constants
-BIAS = 1                # Dummy Feature for use in setting constant factor in Training.
-TRAIN_TEST_RATIO = .75  # Default Ratio of data to be used in Training vs. Testing.
-ITERATIONS = 100        # Default Number of Training Iterations.
-
+BIAS = 1                            # Dummy Feature for use in setting constant factor in Training.
+TRAIN_TEST_RATIO = .75              # Default Ratio of data to be used in Training vs. Testing.
+ITERATIONS = 100                    # Default Number of Training Iterations.
+OUTPUT_PATH = "classifier_models/"  # Directory in which to save completed models.
 
 class MultiClassPerceptron():
     """

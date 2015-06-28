@@ -6,6 +6,8 @@ A class for building, training, and getting analytics for a Multi-Class Perceptr
 Loads feature data and examples from the feature_data sub-directory, in the predefined format (found in the README),
 and builds a mc_perceptron model object, to be saved in the classifier_models directory.
 """
+import numpy as np
+import random
 
 __author__ = "Sidd Karamcheti"
 
@@ -27,5 +29,50 @@ class MultiClassPerceptron():
     :param  iterations        Number of iterations to run training data through. Set to 100 by default.
     """
     def __init__(self, classes, feature_list, feature_data, train_test_ratio=TRAIN_TEST_RATIO, iterations=ITERATIONS):
-        pass
+        self.classes = classes
+        self.feature_list = feature_list
+        self.feature_data = random.shuffle(feature_data)
+        self.ratio = train_test_ratio
+        self.iterations = iterations
 
+        # Split feature data into train set, and test set
+        self.train_set = self.feature_data[:(len(self.feature_data) * self.ratio)]
+        self.test_set = self.feature_data[(len(self.feature_data) * self.ratio):]
+
+        # Initialize empty weight vectors, with extra BIAS term.
+        self.weight_vectors = {c: np.array([0 for _ in xrange(len(feature_list) + 1)]) for c in self.classes}
+
+    def train(self):
+        """
+        Train the Multi-Class Perceptron algorithm using the following method (from the README):
+
+        During each iteration of training, the data (formatted as a feature vector) is read in, and the dot product is
+        taken with each unique weight vector (which are all initially set to 0). The class that yields the highest
+        product is the class to which the data belongs. In the case this class is the correct value (matches with the
+        actual category to which the data belongs), nothing happens, and the next data point is read in. However, in the
+        case that the predicted value is wrong, the weight vectors are corrected as follows: The feature vector is
+        subtracted from the predicted weight vector, and added to the actual (correct) weight vector. This makes sense,
+        as we want to reject the wrong answer, and accept the correct one.
+
+        After the final iteration, the final weight vectors should be somewhat stable (it is of importance to note that
+        unlike the assumptions of the binary perceptron, there is no guarantee the multi-class perceptron will reach a
+        steady state), and the classifier will be ready to be put to use.
+        """
+        for _ in xrange(self.iterations):
+            for category, feature_dict in self.train_set:
+                # Format feature values as a vector, with extra BIAS term.
+                feature_vector = np.array(([feature_dict[k] for k in self.feature_list]).append(BIAS))
+
+                # Initialize arg_max value, predicted class.
+                arg_max, predicted_class = 0, self.classes[0]
+
+                # Multi-Class Decision Rule:
+                for c in self.classes:
+                    current_activation = np.dot(feature_vector, self.weight_vectors[c])
+                    if current_activation >= arg_max:
+                        arg_max, predicted_class = current_activation, c
+
+                # Update Rule:
+                if not (category == c):
+                    self.weight_vectors[category] += feature_vector
+                    self.weight_vectors[c] -= feature_vector

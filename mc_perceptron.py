@@ -7,6 +7,7 @@ Loads feature data and examples from the feature_data sub-directory, in the pred
 and builds a mc_perceptron model object, to be saved in the classifier_models directory.
 """
 import numpy as np
+import pickle
 import random
 
 __author__ = "Sidd Karamcheti"
@@ -76,3 +77,23 @@ class MultiClassPerceptron():
                 if not (category == c):
                     self.weight_vectors[category] += feature_vector
                     self.weight_vectors[c] -= feature_vector
+
+    def save_classifier(self, classifier_name):
+        """
+        Saves classifier as a .pickle file to the classifier_models directory.
+
+        :param  classifier_name  Name under which to save the classifier.
+        """
+        with open(OUTPUT_PATH + classifier_name, 'wb') as f:
+            pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
+
+    @staticmethod
+    def load_classifier(classifier_name):
+        """
+        Unpickle the classifier, returns the MultiClassPerceptron object.
+
+        :param  classifier_name  Name the classifier was saved under.
+        :return                  Return instance of MultiClassPerceptron.
+        """
+        with open(OUTPUT_PATH + classifier_name, 'rb') as f:
+            return pickle.load(f)

@@ -6,6 +6,7 @@ A class for building, training, and getting analytics for a Multi-Class Perceptr
 Loads feature data and examples from the feature_data sub-directory, in the predefined format (found in the README),
 and builds a mc_perceptron model object, to be saved in the classifier_models directory.
 """
+from feature_data.shapes_example import classes, feature_list, feature_data
 import numpy as np
 import pickle
 import random
@@ -17,6 +18,7 @@ BIAS = 1                            # Dummy Feature for use in setting constant 
 TRAIN_TEST_RATIO = .75              # Default Ratio of data to be used in Training vs. Testing.
 ITERATIONS = 100                    # Default Number of Training Iterations.
 OUTPUT_PATH = "classifier_models/"  # Directory in which to save completed models.
+
 
 class MultiClassPerceptron():
     """
@@ -98,3 +100,9 @@ class MultiClassPerceptron():
         """
         with open(OUTPUT_PATH + classifier_name, 'rb') as f:
             return pickle.load(f)
+
+
+# Simple Sandbox Script to demonstrate entire Pipeline (Loading, Training, Saving, getting Analytics)
+if __name__ == "__main__":
+    shape_classifier = MultiClassPerceptron(classes, feature_list, feature_data)
+    shape_classifier.train()

@@ -8,25 +8,25 @@ Labelled feature data for a series of objects belonging to one of the following 
 """
 
 # Different categories data is broken up into.
-classes = ["line", "triangle", "square"]
+shape_classes = ["line", "triangle", "square"]
 
 # Feature List
-feature_list = ["num_lines", "is_connected", "num_right_angles"]
+shape_feature_list = ["num_lines", "is_connected", "num_right_angles"]
 
 # Feature Data - Notice that all data values must be numerical (in case of boolean values, use 0 for False, 1 for True)
-feature_data = [("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
-                ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
-                ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
-                ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
-                ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
-                ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
-                ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
-                ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
-                ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4})]
+shape_feature_data = [("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
+                      ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
+                      ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
+                      ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
+                      ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
+                      ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4}),
+                      ("line", { "num_lines": 1, "is_connected": 0, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 0 }),
+                      ("triangle", { "num_lines": 3, "is_connected": 1, "num_right_angles": 1 }),
+                      ("square", { "num_lines": 4, "is_connected": 1, "num_right_angles": 4})]

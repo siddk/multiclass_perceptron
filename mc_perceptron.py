@@ -6,7 +6,7 @@ A class for building, training, and getting analytics for a Multi-Class Perceptr
 Loads feature data and examples from the feature_data sub-directory, in the predefined format (found in the README),
 and builds a mc_perceptron model object, to be saved in the classifier_models directory.
 """
-from feature_data.shapes_example import classes, feature_list, feature_data
+from feature_data.shapes_example import *
 import numpy as np
 import pickle
 import random
@@ -34,13 +34,14 @@ class MultiClassPerceptron():
     def __init__(self, classes, feature_list, feature_data, train_test_ratio=TRAIN_TEST_RATIO, iterations=ITERATIONS):
         self.classes = classes
         self.feature_list = feature_list
-        self.feature_data = random.shuffle(feature_data)
+        self.feature_data = feature_data
         self.ratio = train_test_ratio
         self.iterations = iterations
 
         # Split feature data into train set, and test set
-        self.train_set = self.feature_data[:(len(self.feature_data) * self.ratio)]
-        self.test_set = self.feature_data[(len(self.feature_data) * self.ratio):]
+        random.shuffle(self.feature_data)
+        self.train_set = self.feature_data[:int(len(self.feature_data) * self.ratio)]
+        self.test_set = self.feature_data[int(len(self.feature_data) * self.ratio):]
 
         # Initialize empty weight vectors, with extra BIAS term.
         self.weight_vectors = {c: np.array([0 for _ in xrange(len(feature_list) + 1)]) for c in self.classes}
@@ -65,7 +66,10 @@ class MultiClassPerceptron():
         for _ in xrange(self.iterations):
             for category, feature_dict in self.train_set:
                 # Format feature values as a vector, with extra BIAS term.
-                feature_vector = np.array(([feature_dict[k] for k in self.feature_list]).append(BIAS))
+                feature_list = [feature_dict[k] for k in self.feature_list]
+                feature_list.append(BIAS)
+                feature_vector = np.array(feature_list)
+                print feature_vector
 
                 # Initialize arg_max value, predicted class.
                 arg_max, predicted_class = 0, self.classes[0]
@@ -73,13 +77,36 @@ class MultiClassPerceptron():
                 # Multi-Class Decision Rule:
                 for c in self.classes:
                     current_activation = np.dot(feature_vector, self.weight_vectors[c])
+                    print current_activation, arg_max
                     if current_activation >= arg_max:
                         arg_max, predicted_class = current_activation, c
 
                 # Update Rule:
-                if not (category == c):
+                if not (category == predicted_class):
                     self.weight_vectors[category] += feature_vector
-                    self.weight_vectors[c] -= feature_vector
+                    self.weight_vectors[predicted_class] -= feature_vector
+
+    def predict(self, feature_dict):
+        """
+        Categorize a brand-new, unseen data point based on the existing collected data.
+
+        :param  feature_dictionary  Dictionary of the same form as the training feature data.
+        :return                     Return the predicted category for the data point.
+        """
+        feature_list = [feature_dict[k] for k in self.feature_list]
+        feature_list.append(BIAS)
+        feature_vector = np.array(feature_list)
+
+        # Initialize arg_max value, predicted class.
+        arg_max, predicted_class = 0, self.classes[0]
+
+        # Multi-Class Decision Rule:
+        for c in self.classes:
+            current_activation = np.dot(feature_vector, self.weight_vectors[c])
+            if current_activation >= arg_max:
+                arg_max, predicted_class = current_activation, c
+
+        return predicted_class
 
     def save_classifier(self, classifier_name):
         """
@@ -104,5 +131,5 @@ class MultiClassPerceptron():
 
 # Simple Sandbox Script to demonstrate entire Pipeline (Loading, Training, Saving, getting Analytics)
 if __name__ == "__main__":
-    shape_classifier = MultiClassPerceptron(classes, feature_list, feature_data)
+    shape_classifier = MultiClassPerceptron(shape_classes, shape_feature_list, shape_feature_data)
     shape_classifier.train()

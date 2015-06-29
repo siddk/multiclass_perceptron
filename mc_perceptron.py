@@ -21,6 +21,9 @@ OUTPUT_PATH = "classifier_models/"  # Directory in which to save completed model
 
 
 class MultiClassPerceptron():
+    # Analytics values
+    precision, recall, accuracy, fbeta_score = 0, 0, 0, 0
+
     """
     A Multi-Class Perceptron Model object, with functions for loading feature data, training the algorithm,
     and running analytics on model performance.
@@ -107,6 +110,19 @@ class MultiClassPerceptron():
                 arg_max, predicted_class = current_activation, c
 
         return predicted_class
+
+    def run_analytics(self):
+        """
+        Runs analytics on the classifier, returning data on precision, recall, accuracy, as well
+        as the fbeta score.
+
+        :return: Prints statistics to screen.
+        """
+        print "Classification Analysis: "
+        print "Precision: ", self.precision
+        print "Recall: ", self.recall
+        print "Accuracy: ", self.accuracy
+        print "FBeta Score: ", self.fbeta_score
 
     def save_classifier(self, classifier_name):
         """

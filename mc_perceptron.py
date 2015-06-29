@@ -72,7 +72,6 @@ class MultiClassPerceptron():
                 feature_list = [feature_dict[k] for k in self.feature_list]
                 feature_list.append(BIAS)
                 feature_vector = np.array(feature_list)
-                print feature_vector
 
                 # Initialize arg_max value, predicted class.
                 arg_max, predicted_class = 0, self.classes[0]
@@ -80,7 +79,6 @@ class MultiClassPerceptron():
                 # Multi-Class Decision Rule:
                 for c in self.classes:
                     current_activation = np.dot(feature_vector, self.weight_vectors[c])
-                    print current_activation, arg_max
                     if current_activation >= arg_max:
                         arg_max, predicted_class = current_activation, c
 

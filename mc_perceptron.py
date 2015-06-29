@@ -122,6 +122,34 @@ class MultiClassPerceptron():
         print "Accuracy: ", self.accuracy
         print "FBeta Score: ", self.fbeta_score
 
+    def calculate_precision(self):
+        """
+        Calculates the precision of the classifier by running algorithm against test set and comparing
+        the output to the actual categorization.
+        """
+        pass
+
+    def calculate_recall(self):
+        """
+        Calculates the recall of the classifier by running algorithm against test set and comparing
+        the output to the actual categorization.
+        """
+        pass
+
+    def calculate_accuracy(self):
+        """
+        Calculates the accuracy of the classifier by running algorithm against test set and comparing
+        the output to the actual categorization.
+        """
+        pass
+
+    def calculate_fbeta_score(self):
+        """
+        Calculates the fbeta score of the classifier by running algorithm against test set and comparing
+        the output to the actual categorization.
+        """
+        pass
+
     def save_classifier(self, classifier_name):
         """
         Saves classifier as a .pickle file to the classifier_models directory.

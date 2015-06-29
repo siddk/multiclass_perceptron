@@ -130,7 +130,7 @@ class MultiClassPerceptron():
 
         :param  classifier_name  Name under which to save the classifier.
         """
-        with open(OUTPUT_PATH + classifier_name, 'wb') as f:
+        with open(OUTPUT_PATH + classifier_name + ".pik", 'wb') as f:
             pickle.dump(self, f, pickle.HIGHEST_PROTOCOL)
 
     @staticmethod
@@ -141,7 +141,7 @@ class MultiClassPerceptron():
         :param  classifier_name  Name the classifier was saved under.
         :return                  Return instance of MultiClassPerceptron.
         """
-        with open(OUTPUT_PATH + classifier_name, 'rb') as f:
+        with open(OUTPUT_PATH + classifier_name + ".pik", 'rb') as f:
             return pickle.load(f)
 
 
@@ -149,3 +149,4 @@ class MultiClassPerceptron():
 if __name__ == "__main__":
     shape_classifier = MultiClassPerceptron(shape_classes, shape_feature_list, shape_feature_data)
     shape_classifier.train()
+    shape_classifier.save_classifier("shape_classifier");

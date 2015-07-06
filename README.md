@@ -87,9 +87,9 @@ Instantiate a Perceptron object, call the train method, and finally call the sav
 given model). Altogether, it will look something like this (using the provided shape classifier example):
 
 ```python
-    shape_classifier = MultiClassPerceptron(shape_classes, shape_feature_list, shape_feature_data)
-    shape_classifier.train()
-    shape_classifier.save_classifier("shape_classifier")
+shape_classifier = MultiClassPerceptron(shape_classes, shape_feature_list, shape_feature_data)
+shape_classifier.train()
+shape_classifier.save_classifier("shape_classifier")
 ```
 
 When calling the save class method, the classifier model will by default be saved to `shape_classifier.pik` in the
@@ -103,10 +103,10 @@ category classifier, as well as f-beta and accuracy statistics. You can also ret
 accessing the actual fields for each statistic as follows:
 
 ```python
-    precision_dictionary = shape_classifier.precision
-    recall_dictionary = shape_classifier.recall
-    fbeta_dictionary = shape_classifier.fbeta_score
+precision_dictionary = shape_classifier.precision
+recall_dictionary = shape_classifier.recall
+fbeta_dictionary = shape_classifier.fbeta_score
 
-    # Actually print the comprehensive analytics report
-    shape_classifier.run_analytics()
+# Actually print the comprehensive analytics report
+shape_classifier.run_analytics()
 ```

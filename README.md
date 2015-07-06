@@ -80,5 +80,33 @@ file in the `feature_data` module.
 
 ### Training and Saving the Classifier ###
 
+To build and save a classifier once the example data has been properly formatted and written to the `feature_data`
+directory, follow the example formatting provided in the main method of the `mc_perceptron.py` file:
+
+Instantiate a Perceptron object, call the train method, and finally call the save method (providing a name for the
+given model). Altogether, it will look something like this (using the provided shape classifier example):
+
+```python
+    shape_classifier = MultiClassPerceptron(shape_classes, shape_feature_list, shape_feature_data)
+    shape_classifier.train()
+    shape_classifier.save_classifier("shape_classifier")
+```
+
+When calling the save class method, the classifier model will by default be saved to `shape_classifier.pik` in the
+classifier_models directory. This can be changed depending on your needs.
 
 ### Building an Analytics Report ###
+
+Finally, to build an analytics report, create and train a model (as shown above), and finally, call the class method
+`run_analytics()` to print the model statistics to screen. These statistics include precision and recall values for each
+category classifier, as well as f-beta and accuracy statistics. You can also retrieve these values dynamically by
+accessing the actual fields for each statistic as follows:
+
+```python
+    precision_dictionary = shape_classifier.precision
+    recall_dictionary = shape_classifier.recall
+    fbeta_dictionary = shape_classifier.fbeta_score
+
+    # Actually print the comprehensive analytics report
+    shape_classifier.run_analytics()
+```

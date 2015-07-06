@@ -22,7 +22,7 @@ OUTPUT_PATH = "classifier_models/"  # Directory in which to save completed model
 
 class MultiClassPerceptron():
     # Analytics values
-    precision, recall, accuracy, fbeta_score = 0, 0, 0, 0
+    precision, recall, accuracy, fbeta_score = {}, {}, 0, {}
 
     """
     A Multi-Class Perceptron Model object, with functions for loading feature data, training the algorithm,
@@ -116,39 +116,96 @@ class MultiClassPerceptron():
 
         :return: Prints statistics to screen.
         """
-        print "Classification Analysis: "
-        print "Precision: ", self.precision
-        print "Recall: ", self.recall
-        print "Accuracy: ", self.accuracy
-        print "FBeta Score: ", self.fbeta_score
+        print "CLASSIFIER ANALYSIS: "
+        print ""
+        self.calculate_precision()
+        print ""
+        self.calculate_recall()
+        print ""
+        self.calculate_fbeta_score()
+        print ""
+        self.calculate_accuracy()
 
     def calculate_precision(self):
         """
         Calculates the precision of the classifier by running algorithm against test set and comparing
         the output to the actual categorization.
         """
-        pass
+        test_classes = [f[0] for f in self.test_set]
+        correct_counts = {c: 0 for c in test_classes}
+        total_counts = {c: 0 for c in test_classes}
+
+        for feature_dict in self.test_set:
+            actual_class = feature_dict[0]
+            predicted_class = self.predict(feature_dict[1])
+
+            if actual_class == predicted_class:
+                correct_counts[actual_class] += 1
+                total_counts[actual_class] += 1
+            else:
+                total_counts[predicted_class] += 1
+
+
+        print "PRECISION STATISTICS:"
+
+        for c in correct_counts:
+            self.precision[c] = (correct_counts[c] * 1.0) / (total_counts[c] * 1.0)
+            print "%s Class Precision:" % (c.upper()), self.precision[c]
 
     def calculate_recall(self):
         """
         Calculates the recall of the classifier by running algorithm against test set and comparing
         the output to the actual categorization.
         """
-        pass
+        test_classes = [f[0] for f in self.test_set]
+        correct_counts = {c: 0 for c in test_classes}
+        total_counts = {c: 0 for c in test_classes}
+
+        for feature_dict in self.test_set:
+            actual_class = feature_dict[0]
+            predicted_class = self.predict(feature_dict[1])
+
+            if actual_class == predicted_class:
+                correct_counts[actual_class] += 1
+                total_counts[actual_class] += 1
+            else:
+                total_counts[actual_class] += 1
+
+        print "RECALL STATISTICS:"
+
+        for c in correct_counts:
+            self.recall[c] = (correct_counts[c] * 1.0) / (total_counts[c] * 1.0)
+            print "%s Class Recall:" % (c.upper()), self.recall[c]
 
     def calculate_accuracy(self):
         """
         Calculates the accuracy of the classifier by running algorithm against test set and comparing
         the output to the actual categorization.
         """
-        pass
+        correct, incorrect = 0, 0
+        for feature_dict in self.test_set:
+            actual_class = feature_dict[0]
+            predicted_class = self.predict(feature_dict[1])
+
+            if actual_class == predicted_class:
+                correct += 1
+            else:
+                incorrect += 1
+
+        print "ACCURACY:"
+        print "Model Accuracy:", (correct * 1.0) / ((correct + incorrect) * 1.0)
 
     def calculate_fbeta_score(self):
         """
         Calculates the fbeta score of the classifier by running algorithm against test set and comparing
         the output to the actual categorization.
+
+        Calculated by taking the harmonic mean of the precision and recall values.
         """
-        pass
+        print "F-BETA SCORES: "
+        for c in self.precision:
+            self.fbeta_score[c] = 2 * ((self.precision[c] * self.recall[c]) / (self.precision[c] + self.recall[c]))
+            print "%s Class F-Beta Score:", self.fbeta_score[c]
 
     def save_classifier(self, classifier_name):
         """
